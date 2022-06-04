@@ -1,6 +1,6 @@
 from talon import Context, Module, actions, app
 
-default_alphabet = "air bat cap drum each fine gust harp sit jury crunch look made near odd pit quench red sun trap urge vest whale plex yank zip".split(
+default_alphabet = "ask bat cap drum each fine gust harp ill jury crunch look made near odd pit quench red sun trap urge vest whale plex yank zip".split(
     " "
 )
 letters_string = "abcdefghijklmnopqrstuvwxyz"
@@ -134,7 +134,7 @@ punctuation_words = {
     "comma": ",",
     "period": ".",
     "full stop": ".",
-    "semicolon": ";",
+    "semi": ";",
     "colon": ":",
     "forward slash": "/",
     "question mark": "?",
@@ -156,10 +156,7 @@ symbol_key_words = {
     "point": ".",
     "quote": "'",
     "apostrophe": "'",
-    "L square": "[",
     "left square": "[",
-    "square": "[",
-    "R square": "]",
     "right square": "]",
     "slash": "/",
     "backslash": "\\",
@@ -171,20 +168,13 @@ symbol_key_words = {
     "bang": "!",
     "down score": "_",
     "under score": "_",
-    "paren": "(",
-    "L paren": "(",
     "left paren": "(",
-    "R paren": ")",
     "right paren": ")",
-    "brace": "{",
     "left brace": "{",
-    "R brace": "}",
     "right brace": "}",
-    "angle": "<",
     "left angle": "<",
     "less than": "<",
     "rangle": ">",
-    "R angle": ">",
     "right angle": ">",
     "greater than": ">",
     "star": "*",
@@ -223,11 +213,11 @@ simple_keys = [
     "space",
     "tab",
 ]
-
+    
 alternate_keys = {
-    "delete": "backspace",
-    "forward delete": "delete",
-    #'junk': 'backspace',
+    #"backspace": "backspace",
+    "delete": "delete",
+    "junk": 'backspace',
     "page up": "pageup",
     "page down": "pagedown",
 }

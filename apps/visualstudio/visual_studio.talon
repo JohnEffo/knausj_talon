@@ -17,6 +17,8 @@ panel errors: key(ctrl-\ ctrl-e)
 panel design: key(shift-f7)
 panel marks: key(ctrl-k ctrl-w)
 panel breakpoints: key(ctrl-alt-b)
+panel terminal: key(ctrl-')
+panel test: key(ctrl-alt-r)
 
 # Settings
 show settings: key(alt-t o)
@@ -38,7 +40,6 @@ file reveal: key(ctrl-[ s)
 
 # Language Features
 hint show: key(ctrl-shift-space)
-definition show: key(f12)
 definition peek: key(alt-f12)
 references find: key(shift-f12)
 format that: key(ctrl-k ctrl-d)
@@ -57,9 +58,10 @@ refactor that: key(ctrl-r ctrl-r)
 
 #code navigation
 (go declaration | follow): key(ctrl-f12)
+go def: key(ctrl-b)
 go back: key(ctrl--)
 go forward: key(ctrl-shift--)
-go implementation: key(f12)
+go implementation: key(ctrl-shift-alt-b)
 go recent [<user.text>]:
     key(ctrl-1 ctrl-r)
     sleep(100ms)
@@ -93,3 +95,26 @@ debug step out [of]: key(f10)
 debug start: key(f5)
 debug stopper: key(shift-f5)
 debug continue: key(f5)
+
+# Tests
+test run: key(ctrl-t ctrl-r)
+test debug: key(ctrl-t ctrl-d)
+
+# Person
+ref gen: key(alt-i)
+ref action list:key(alt-enter)
+ref format:key(ctrl-alt-enter)
+
+show explorer:key(shift-alt-l)
+show options:key(ctrl-space)
+every where:key(ctrl-n)
+build this: key(shift-ctrl-b)
+selected comment:key(ctrl-k ctrl-c)
+selected uncomment:key(ctrl-k ctrl-u)
+word select:key(ctrl-w)
+
+
+
+
+   
+

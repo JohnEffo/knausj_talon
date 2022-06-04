@@ -33,6 +33,8 @@ and app.bundle: com.googlecode.iterm2
 
 # linux specific apps
 apps.keepass = """
+os: windows
+and app.name: KeePass2
 os: linux
 and app.name: KeePassX2
 os: linux

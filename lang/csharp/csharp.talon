@@ -24,3 +24,18 @@ settings():
     user.code_private_variable_formatter = "PRIVATE_CAMEL_CASE"
     user.code_protected_variable_formatter = "PUBLIC_CAMEL_CASE"
     user.code_public_variable_formatter = "PUBLIC_CAMEL_CASE"
+
+using: "using "
+var: "var "
+for each: "foreach"
+for loop: "for"
+throw: "throw "
+public:"public "
+private:"private "
+readonly:"readonly "  
+int:"int "
+string:"string "
+return:"return "
+if: "if"
+switch:"switch"
+

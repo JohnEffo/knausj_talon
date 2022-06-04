@@ -51,7 +51,7 @@ midclick:
 	# close the mouse grid
 	user.grid_close()
 left drag | drag:
-	user.mouse_drag(0)
+	user.mouse_drag(0)*
 	# close the mouse grid
 	user.grid_close()
 right drag | righty drag:
@@ -68,7 +68,7 @@ wheel tiny [down]: user.mouse_scroll_down(0.2)
 wheel tiny [down] here:
     user.mouse_move_center_active_window()
     user.mouse_scroll_down(0.2)
-wheel downer: user.mouse_scroll_down_continuous()
+wheel [hold down|downer]: user.mouse_scroll_down_continuous()
 wheel downer here:
     user.mouse_move_center_active_window()
     user.mouse_scroll_down_continuous()
@@ -80,7 +80,7 @@ wheel tiny up: user.mouse_scroll_up(0.2)
 wheel tiny up here:
     user.mouse_move_center_active_window()
     user.mouse_scroll_up(0.2)
-wheel upper: user.mouse_scroll_up_continuous()
+wheel [hold up|upper]: user.mouse_scroll_up_continuous()
 wheel upper here:
     user.mouse_move_center_active_window()
     user.mouse_scroll_up_continuous()

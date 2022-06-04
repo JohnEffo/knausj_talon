@@ -1,7 +1,8 @@
 app: windows_terminal
 -
 tag(): user.tabs
-tag(): terminal
+tag(): terminal 
+tag(): user.git
 
 settings open : key(ctrl-,)
 focus left: key(ctrl-alt-shift-left)
@@ -11,6 +12,7 @@ focus down: key(ctrl-alt-shift-down)
 split right: key(alt-shift-=)
 split down: key(alt-shift--)
 term menu: key(ctrl-shift-f1)
+#page up: key(shift-ctrl-pgup)
 
 run last: key(up enter)
 kill all:
@@ -18,6 +20,9 @@ kill all:
     insert("y")
     key(enter)
 
+list directory:"ls "
+change directory:"cd "
+change root:"cd \"
 
 find it:
     edit.find()

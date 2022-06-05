@@ -3,6 +3,7 @@ app: windows_terminal
 tag(): user.tabs
 tag(): terminal 
 tag(): user.git
+tag(): user.terraform
 
 settings open : key(ctrl-,)
 focus left: key(ctrl-alt-shift-left)
@@ -20,9 +21,6 @@ kill all:
     insert("y")
     key(enter)
 
-list directory:"ls "
-change directory:"cd "
-change root:"cd \"
 
 find it:
     edit.find()
@@ -32,3 +30,11 @@ find it <phrase>$:
     key(escape)
     # make it so
     edit.find("{phrase}\n")
+
+# Navigation
+list directory:"ls "
+change directory:"cd "
+change root:"cd \\"
+
+# Applications
+code:"code "

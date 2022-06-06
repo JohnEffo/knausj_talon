@@ -35,6 +35,9 @@ find it <phrase>$:
 list directory:"ls "
 change directory:"cd "
 change root:"cd \\"
+source:"src"
+slun:"sln"
+
 
 # Applications
 code:"code "

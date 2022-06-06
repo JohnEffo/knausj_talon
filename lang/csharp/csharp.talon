@@ -33,9 +33,31 @@ throw: "throw "
 public:"public "
 private:"private "
 readonly:"readonly "  
-int:"int "
+intever:"int "
 string:"string "
 return:"return "
 if: "if"
 switch:"switch"
+async:"async "
+await:"await "
+task:"Task"
+class:"class "
+static:"static "
+when:"when "
+new:'new '
+enum:"enum "
+get:"get;"
+set:"set;"
+bool:"bool"
+
+#snippets
+constructor:"ctor"
+
+# Aattributes
+attribute get:"[HttpGet]"
+attribute post:"[HttpPost]"
+attribute HTTP:"[Http]"
+attribute route:
+   insert('[Route(')
+    key("\"")
 

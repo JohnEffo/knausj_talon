@@ -73,6 +73,12 @@ os: windows
 and app.exe: WindowsTerminal.exe
 """
 
+apps.visual_studio = """
+os: windows
+and app.exe: devenv.exe
+"""
+
+
 mod.apps.windows_power_shell = """
 os: windows
 and app.exe: powershell.exe

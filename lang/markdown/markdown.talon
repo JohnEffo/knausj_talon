@@ -6,6 +6,7 @@ level three: "### "
 level four: "#### "
 level five: "##### "
 level six: "###### "
+check box:"- [ ]"
 
 {user.markdown_code_block_language} block:
     "```{markdown_code_block_language}"

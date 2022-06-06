@@ -2,7 +2,7 @@
 # https://marketplace.visualstudio.com/items?itemName=mayerwin.RenameVisualStudioWindowTitle
 # https://github.com/mayerwin/vs-customize-window-title (VS 2022 support in releases)
 # I currently configure the extension as below
-# Document (no solution) open: [documentName] - [ideName]
+# Document (no solution) open: c
 # No document or solution open: [idleName]
 # Solution in break mode: [documentName] - [parentPath]\[solutionName] (Debugging) - [ideName]
 # Solution in design mode: [documentName] - [parentPath]\[solutionName] - [ideName]

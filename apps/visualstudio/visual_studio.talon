@@ -33,7 +33,7 @@ wrap switch: key(ctrl-e ctrl-w)
 file hunt [<user.text>]:
     key(ctrl-shift-t)
     insert(text or "")
-file create: key(ctrl-n)
+
 #file open folder:
 file rename: key(ctrl-[ s f2)
 file reveal: key(ctrl-[ s)
@@ -49,32 +49,34 @@ imports fix: key(ctrl-r ctrl-g)
 # problem next:
 # problem last:
 # problem fix:
-refactor field: key(ctrl-r ctrl-e)
-refactor interface: key(ctrl-r ctrl-i)
-refactor method: key(ctrl-r ctrl-m)
-refactor reorder parameters: key(ctrl-r ctrl-o)
-refactor remove parameters: key(ctrl-r ctrl-v)
-refactor that: key(ctrl-r ctrl-r)
+ref field: key(ctrl-r ctrl-e)
+ref interface: key(ctrl-r ctrl-i)
+ref method: key(ctrl-r ctrl-m)
+ref reorder parameters: key(ctrl-r ctrl-o)
+ref remove parameters: key(ctrl-r ctrl-v)
+ref that: key(ctrl-r ctrl-r)
 
-#code navigation
+# code navigation
 (go declaration | follow): key(ctrl-f12)
 go def: key(ctrl-b)
 go back: key(ctrl--)
 go forward: key(ctrl-shift--)
 go implementation: key(ctrl-shift-alt-b)
-go recent [<user.text>]:
-    key(ctrl-1 ctrl-r)
-    sleep(100ms)
-    insert(text or "")
-go type [<user.text>]:
-    key(ctrl-1 ctrl-t)
-    sleep(100ms)
-    insert(text or "")
+go recent:
+    # Resharper
+    kkey(ctrl-e)
+go type :
+    # Resharper
+    key(ctrl-n)
 go member [<user.text>]:
     key(alt-\)
     sleep(100ms)
     insert(text or "")
 go usage: key(shift-f12)
+member next:key(alt-down)
+member last:key(alt-up)
+item next:key(f8)
+issue next:key(f12)
 
 # Bookmarks.
 go marks: key(ctrl-k ctrl-w)
@@ -103,18 +105,13 @@ test debug: key(ctrl-t ctrl-d)
 # Person
 ref gen: key(alt-i)
 ref action list:key(alt-enter)
-ref format:key(ctrl-alt-enter)
 
+# show
 show explorer:key(shift-alt-l)
 show options:key(ctrl-space)
-every where:key(ctrl-n)
+
 build this: key(shift-ctrl-b)
 selected comment:key(ctrl-k ctrl-c)
 selected uncomment:key(ctrl-k ctrl-u)
 word select:key(ctrl-w)
-
-
-
-
-   
 

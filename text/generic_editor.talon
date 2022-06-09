@@ -4,32 +4,31 @@ find it:
 next one:
     edit.find_next()
 
-go word left:
+drain:
     edit.word_left()
 
-go word right:
+step:
     edit.word_right()
 
-go left:
+tug:
     edit.left()
 
-go right:
+push:
     edit.right()
 
-go up:
+north:
     edit.up()
 
-go down:
+south:
     edit.down()
 
-go line start:
+head:
     edit.line_start()
 
-go line end:
+tail:
     edit.line_end()
 
 go way left:
-    edit.line_start()
     edit.line_start()
 
 go way right:
@@ -50,90 +49,90 @@ go top:
 go page down:
     edit.page_down()
 
-go page up:
+go pbage up:
     edit.page_up()
 
 # selecting
-select line:
+take line:
     edit.select_line()
 
 select all:
     edit.select_all()
 
-select left:
+take tug:
     edit.extend_left()
 
-select right:
+take push:
     edit.extend_right()
 
-select up:
+take up:
     edit.extend_line_up()
 
-select down:
+take down:
     edit.extend_line_down()
 
-select word:
+take word:
     edit.select_word()
 
-select word left:
+take drain:
     edit.extend_word_left()
 
-select word right:
+take step:
     edit.extend_word_right()
 
-select way left:
+take head:
     edit.extend_line_start()
 
-select way right:
+take tail:
     edit.extend_line_end()
 
-select way up:
+take way up:
     edit.extend_file_start()
 
-select way down:
+take way down:
     edit.extend_file_end()
 
 # editing
 indent [more]:
     edit.indent_more()
 
-(indent less | out dent):
+(indent less | dedent):
     edit.indent_less()
 
 # deleting
 clear line:
     edit.delete_line()
 
-clear left:
+clear tug:
     key(backspace)
 
-clear right:
+clear pusht:
     key(delete)
 
-clear up:
+clear north:
     edit.extend_line_up()
     edit.delete()
 
-clear down:
+clear south:
     edit.extend_line_down()
     edit.delete()
 
 clear word:
     edit.delete_word()
 
-clear word left:
+clear drain:
     edit.extend_word_left()
     edit.delete()
 
-clear word right:
+clear step:
     edit.extend_word_right()
     edit.delete()
 
-clear way left:
+clear head:
     edit.extend_line_start()
     edit.delete()
 
-clear way right:
+clear tail:
     edit.extend_line_end()
     edit.delete()
 
@@ -171,11 +170,11 @@ copy word:
     edit.select_word()
     edit.copy()
 
-copy word left:
+copy drain:
     edit.extend_word_left()
     edit.copy()
 
-copy word right:
+copy step:
     edit.extend_word_right()
     edit.copy()
 
@@ -205,11 +204,11 @@ cut word:
     edit.select_word()
     edit.cut()
 
-cut word left:
+cut drain:
     edit.extend_word_left()
     edit.cut()
 
-cut word right:
+cut step:
     edit.extend_word_right()
     edit.cut()
 

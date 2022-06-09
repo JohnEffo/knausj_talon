@@ -46,6 +46,7 @@ port_mapping = {
     "jetbrains-pycharm": 8658,
     "jetbrains-rider": 8660,
     "JetBrains Rider": 8660,
+    "OpenJDK Platform binary": 8660,
     "jetbrains-rubymine": 8661,
     "jetbrains-rubymine-eap": 8661,
     "jetbrains-studio": 8652,
@@ -82,6 +83,7 @@ def send_idea_command(cmd):
     active_app = ui.active_app()
     bundle = active_app.bundle or active_app.name
     port = port_mapping.get(bundle, None)
+    print(f"The port is {port} app name is {active_app.name}")
     nonce = _get_nonce(port, ".vcidea_") or _get_nonce(port, "vcidea_")
     proxies = {"http": None, "https": None}
     print(f"sending {bundle} {port} {nonce}")
@@ -139,6 +141,8 @@ os: windows
 and app.name: JetBrains Rider
 os: windows
 and app.exe: rider64.exe
+os: windows
+and app.exe: java.exe
 """
 
 

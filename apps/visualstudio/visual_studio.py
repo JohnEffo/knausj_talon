@@ -1,8 +1,9 @@
+  
 # vs title tracking requires an extension
 # https://marketplace.visualstudio.com/items?itemName=mayerwin.RenameVisualStudioWindowTitle
 # https://github.com/mayerwin/vs-customize-window-title (VS 2022 support in releases)
 # I currently configure the extension as below
-# Document (no solution) open: c
+# Document (no solution) open: [documentName] - [ideName]
 # No document or solution open: [idleName]
 # Solution in break mode: [documentName] - [parentPath]\[solutionName] (Debugging) - [ideName]
 # Solution in design mode: [documentName] - [parentPath]\[solutionName] - [ideName]
@@ -114,9 +115,7 @@ class WinActions:
 @ctx.action_class("user")
 class UserActions:
     # snippet.py support beginHelp close
-    def snippet_search(text: str):
-        """TEST"""
-        actions.key("ctrl-k ctrl-x")
+ 
 
     # def snippet_insert(text: str):
     #     """Inserts a snippet"""
@@ -130,21 +129,23 @@ class UserActions:
     #     actions.key("ctrl-w")
     #     actions.user.perform_selection_action(verb)
 
-    # def select_next_occurrence(verbs: str, text: str):
-    #     actions.edit.find(text)
-    #     actions.sleep("100ms")
+    def select_next_occurrence(verbs: str, text: str):
+        actions.edit.find(text)
+        actions.sleep("100ms")
+        actions.key(f3)
+        actions.sleep("100ms")
 
-    #     actions.key("esc")
-    #     if verbs is not None:
-    #         actions.user.perform_selection_action(verbs)
+        # actions.key("esc")
+        # if verbs is not None:
+        #     actions.user.perform_selection_action(verbs)
 
-    # def select_previous_occurrence(verbs: str, text: str):
-    #     actions.edit.find(text)
-    #     actions.key("shift-enter")
-    #     actions.sleep("100ms")
-    #     actions.key("esc")
-    #     if verbs is not None:
-    #         actions.user.perform_selection_action(verbs)
+    def select_previous_occurrence(verbs: str, text: str):
+        actions.edit.find(text)
+        actions.key("shift-enter")
+        actions.sleep("100ms")
+        actions.key("esc")
+        if verbs is not None:
+            actions.user.perform_selection_action(verbs)
 
     # def go_to_line(verb: str, line: int):
     #     actions.key("ctrl-g")
@@ -182,7 +183,7 @@ class UserActions:
 
     def find(text: str):
         """Triggers find in current editor"""
-        actions.key("ctrl-f")
+        actions.key("ctrl-t t t")
 
         if text:
             actions.insert(text)
@@ -242,6 +243,7 @@ class UserActions:
 
     def select_next_occurrence(text: str):
         actions.edit.find(text)
+        actions.key("f3")
         actions.sleep("100ms")
         actions.key("esc")
 

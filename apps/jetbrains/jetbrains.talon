@@ -1,5 +1,6 @@
 # Requires https://plugins.jetbrains.com/plugin/10504-voice-code-idea
-app.exe: java.exe
+# https://github.com/JetBrains/intellij-community/blob/a1c3e202e3b959aa537de87f89ae9059829fe830/platform/platform-resources-en/src/messages/ActionsBundle.properties
+app: jetbrains
 -
 tag(): user.line_commands
 tag(): user.multiple_cursors
@@ -15,6 +16,7 @@ smart: user.idea("action SmartTypeCompletion")
 # Copying
 grab <number>: user.idea_grab(number)
 # Actions
+action list:key('alt-enter')
 (action | please): user.idea("action GotoAction")
 (action | please) <user.text>:
     user.idea("action GotoAction")
@@ -149,6 +151,7 @@ toggle to do: user.idea("action ActivateTODOToolWindow")
 toggle docker: user.idea("action ActivateDockerToolWindow")
 toggle favorites: user.idea("action ActivateFavoritesToolWindow")
 toggle last: user.idea("action JumpToLastWindow")
+toggle current commit:user.idea("action ActivateCommitToolWindow")
 # Pin/dock/float
 toggle pinned: user.idea("action TogglePinnedMode")
 toggle docked: user.idea("action ToggleDockMode")
@@ -248,5 +251,9 @@ select camel right: user.extend_camel_right()
 go camel left: user.camel_left()
 go camel right: user.camel_right()
 
-# requires plug-in: black-pycharm
-blacken: user.idea("action BLACKReformatCode")
+
+
+# panels
+toggle settings:key(ctrl-alt-s)
+#build this:user.idea("action CompileProject")
+build this:key(ctrl-shift-b)

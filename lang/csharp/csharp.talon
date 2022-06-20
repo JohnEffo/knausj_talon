@@ -25,6 +25,8 @@ settings():
     user.code_protected_variable_formatter = "PUBLIC_CAMEL_CASE"
     user.code_public_variable_formatter = "PUBLIC_CAMEL_CASE"
 
+record:"record "
+interface: "interface "
 using: "using "
 var: "var "
 for each: "foreach"
@@ -44,7 +46,7 @@ task:"Task"
 class:"class "
 static:"static "
 when:"when "
-new:'new '
+state new: "new "
 enum:"enum "
 get:"get;"
 set:"set;"

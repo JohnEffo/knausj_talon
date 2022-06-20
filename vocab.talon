@@ -7,6 +7,8 @@ pause mouse:key(f15)
 
 # Shh Commands
 shenter:key(enter)
+clap: key(enter)
+nope: key(ctrl-z)
 shab:key(tab)
 shcop:key(ctrl-c)
 shpa:key(ctrl-v)

@@ -42,9 +42,10 @@ file reveal: key(ctrl-[ s)
 hint show: key(ctrl-shift-space)
 definition peek: key(alt-f12)
 references find: key(shift-f12)
-format that: key(ctrl-k ctrl-d)
-format selection: key(ctrl-k ctrl-f)
+format that: key(ctrl-alt-enter)
+fix format: key(ctrl-k ctrl-f)
 imports fix: key(ctrl-r ctrl-g)
+clean code:key(ctrl-alt-f)
 
 # problem next:
 # problem last:
@@ -57,7 +58,7 @@ ref remove parameters: key(ctrl-r ctrl-v)
 ref that: key(ctrl-r ctrl-r)
 
 # code navigation
-(go declaration | follow): key(ctrl-f12)
+(go declaration | follow): key(ctrl-b)
 go def: key(ctrl-b)
 go back: key(ctrl--)
 go forward: key(ctrl-shift--)
@@ -85,12 +86,12 @@ go next mark: key(ctrl-k ctrl-n)
 go last mark: key(ctrl-k ctrl-p)
 
 # Folding
-fold toggle: key(ctrl-m ctrl-m)
+toggle fold: key(ctrl-m ctrl-m)
 fold toggle all: key(ctrl-m ctrl-l)
 fold definitions: key(ctrl-m ctrl-o)
 
 #Debugging
-break point: key(f9)
+toggle break: key(f9)
 step over: key(f10)
 debug step into: key(f11)
 debug step out [of]: key(f10)

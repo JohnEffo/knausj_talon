@@ -55,7 +55,7 @@ ref interface: key(ctrl-r ctrl-i)
 ref method: key(ctrl-r ctrl-m)
 ref reorder parameters: key(ctrl-r ctrl-o)
 ref remove parameters: key(ctrl-r ctrl-v)
-ref that: key(ctrl-r ctrl-r)
+ref rename: key(ctrl-r ctrl-r)
 
 # code navigation
 (go declaration | follow): key(ctrl-b)
@@ -65,7 +65,7 @@ go forward: key(ctrl-shift--)
 go implementation: key(ctrl-shift-alt-b)
 go recent:
     # Resharper
-    kkey(ctrl-e)
+    key(ctrl-e)
 go type :
     # Resharper
     key(ctrl-n)
@@ -105,14 +105,14 @@ test debug: key(ctrl-t ctrl-d)
 
 # Person
 ref gen: key(alt-i)
-ref action list:key(alt-enter)
+action list:key(alt-enter)
 
 # show
 show explorer:key(shift-alt-l)
-show options:key(ctrl-space)
+complet:key(ctrl-space)
 
 build this: key(shift-ctrl-b)
 selected comment:key(ctrl-k ctrl-c)
 selected uncomment:key(ctrl-k ctrl-u)
-word select:key(ctrl-w)
+
 

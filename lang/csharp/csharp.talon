@@ -25,6 +25,9 @@ settings():
     user.code_protected_variable_formatter = "PUBLIC_CAMEL_CASE"
     user.code_public_variable_formatter = "PUBLIC_CAMEL_CASE"
 
+constant:"const "
+void: "void "
+new:"new "
 record:"record "
 interface: "interface "
 using: "using "
@@ -32,6 +35,7 @@ var: "var "
 for each: "foreach"
 for loop: "for"
 throw: "throw "
+this:"this "
 public:"public "
 private:"private "
 readonly:"readonly "  
@@ -51,6 +55,7 @@ enum:"enum "
 get:"get;"
 set:"set;"
 bool:"bool"
+to:"To"
 
 #snippets
 constructor:"ctor"
@@ -58,8 +63,9 @@ constructor:"ctor"
 # Aattributes
 attribute get:"[HttpGet]"
 attribute post:"[HttpPost]"
-attribute HTTP:"[Http]"
 attribute route:
    insert('[Route(')
     key("\"")
-
+attribute:
+    "[]"
+    key(left)

@@ -78,8 +78,8 @@ git remote add upstream: "git remote add upstream "
 git remote remove: "git remote remove "
 git remote show origin: "git remote show origin\n"
 git show: "git show "
-git stash pop: "git stash pop\n"
-git stash: "git stash\n"
+git stash pop: "git stash pop"
+git stash: "git stash"
 git stash push:
   insert("git stash push -m ''")
   key(left)

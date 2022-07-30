@@ -1,4 +1,5 @@
-os: windows
+
+
 app: visual_studio
 -
 tag(): user.tabs
@@ -19,6 +20,7 @@ panel marks: key(ctrl-k ctrl-w)
 panel breakpoints: key(ctrl-alt-b)
 panel terminal: key(ctrl-')
 panel test: key(ctrl-alt-r)
+panel error:key(ctrl-\ ctrl-e)
 
 # Settings
 show settings: key(alt-t o)
@@ -56,19 +58,23 @@ ref method: key(ctrl-r ctrl-m)
 ref reorder parameters: key(ctrl-r ctrl-o)
 ref remove parameters: key(ctrl-r ctrl-v)
 ref rename: key(ctrl-r ctrl-r)
+ref parameter:key(ctrl-alt-p)
+ref var:key(ctrl-alt-v)
 
 # code navigation
 (go declaration | follow): key(ctrl-b)
 go def: key(ctrl-b)
 go back: key(ctrl--)
 go forward: key(ctrl-shift--)
-go implementation: key(ctrl-shift-alt-b)
+go implementation: key(ctrl-f12)
 go recent:
     # Resharper
     key(ctrl-e)
-go type :
+go type [<user.text>] :
     # Resharper
     key(ctrl-n)
+    sleep(100ms)
+    insert(text or "")
 go member [<user.text>]:
     key(alt-\)
     sleep(100ms)
@@ -80,10 +86,10 @@ item next:key(f8)
 issue next:key(f12)
 
 # Bookmarks.
-go marks: key(ctrl-k ctrl-w)
-toggle mark: key(ctrl-k ctrl-k)
-go next mark: key(ctrl-k ctrl-n)
-go last mark: key(ctrl-k ctrl-p)
+go (bookmarks |marks): key(ctrl-k ctrl-w)
+toggle (bookmark |mark): key(ctrl-k ctrl-k)
+go next (bookmark |mark): key(ctrl-k ctrl-n)
+go last (bookmark |mark): key(ctrl-k ctrl-p)
 
 # Folding
 toggle fold: key(ctrl-m ctrl-m)
@@ -109,10 +115,11 @@ action list:key(alt-enter)
 
 # show
 show explorer:key(shift-alt-l)
-complet:key(ctrl-space)
+complete:key(ctrl-space)
 
 build this: key(shift-ctrl-b)
-selected comment:key(ctrl-k ctrl-c)
-selected uncomment:key(ctrl-k ctrl-u)
-
+comment that:key(ctrl-k ctrl-c)
+uncomment that:key(ctrl-k ctrl-u)
+code insert:key(alt-i)
+extend:key(ctrl-w)
 

@@ -1,6 +1,6 @@
 from talon import Context, Module, actions, app
 
-default_alphabet = "ask bat cap drum each fine gust ham ill just kong look made near odd pit quench red sun trap urge vest whale plex yank zip".split(
+default_alphabet = "ask bat cap drum each fine gust host ill just kong look made near odd pit quench red sun trap urge vest whale plex yank zip".split(
     " "
 )
 letters_string = "abcdefghijklmnopqrstuvwxyz"
@@ -111,7 +111,7 @@ ctx = Context()
 modifier_keys = {
     # If you find 'alt' is often misrecognized, try using 'alter'.
     "alt": "alt",  #'alter': 'alt',
-    "troll": "ctrl",  #'troll':   'ctrl',
+    "stroll": "ctrl",  #'troll':   'ctrl',
     "shift": "shift",  #'sky':     'shift',
     "super": "super",
 }

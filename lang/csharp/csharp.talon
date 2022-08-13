@@ -55,7 +55,7 @@ enum:"enum "
 get:"get;"
 set:"set;"
 bool:"bool"
-to:"To"
+
 
 #snippets
 constructor:"ctor"

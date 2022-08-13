@@ -42,6 +42,17 @@ change root:"cd \\"
 source:"src"
 slun:"sln"
 
-
 # Applications
 code:"code "
+new code:
+    "code . -n"
+    key(enter)
+
+north:key(up)
+south:key(down)
+tug:key(left)
+push:key(right)
+
+find solutions:
+  "*sln"
+  key(ctrl-space)

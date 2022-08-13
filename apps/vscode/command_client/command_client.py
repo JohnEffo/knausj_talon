@@ -1,5 +1,6 @@
 import json
 import os
+import string
 import time
 from dataclasses import dataclass
 from pathlib import Path
@@ -31,8 +32,20 @@ ctx = Context()
 mac_ctx = Context()
 linux_ctx = Context()
 
+vs_code_ctx = Context()
+visual_studio_ctx= Context()
+
+vs_code_ctx.matches = r"""
+app: vscode
+"""
+
+visual_studio_ctx.matches = r"""
+app: visual_studio
+"""
+
 ctx.matches = r"""
 app: vscode
+app: visual_studio
 """
 mac_ctx.matches = r"""
 os: mac
@@ -214,6 +227,8 @@ def get_communication_dir_path():
     Returns:
         Path: The path to the communication dir
     """
+    print(f"************************{actions.user.directory()}**********************")
+    # print(vs_code_ctx.matches[0])
     suffix = ""
 
     # NB: We don't suffix on Windows, because the temp dir is user-specific
@@ -221,7 +236,7 @@ def get_communication_dir_path():
     if hasattr(os, "getuid"):
         suffix = f"-{os.getuid()}"
 
-    return Path(gettempdir()) / f"vscode-command-server{suffix}"
+    return Path(gettempdir()) / f"{actions.user.directory()}{suffix}"
 
 
 def robust_unlink(path: Path):
@@ -357,18 +372,44 @@ class Actions:
             return_command_output=True,
         )
 
+    def directory() -> string:
+        """Return the final directory of the command server"""
+      
+
     def trigger_command_server_command_execution():
         """Issue keystroke to trigger command server to execute command that
         was written to the file.  For internal use only"""
         actions.key("ctrl-shift-f17")
 
+    def live_pre_phrase_signal() -> bool:
+      """Used by application contexts emit_pre_phrase_signal to emit a pre phrase signal"""
+      get_signal_path("prePhrase").touch()
+      return True
+
     def emit_pre_phrase_signal() -> bool:
         """Touches a file to indicate that a phrase is about to begin execution"""
-
+  
     def did_emit_pre_phrase_signal() -> bool:
         """Indicates whether the pre-phrase signal was emitted at the start of this phrase"""
         return did_emit_pre_phrase_signal
 
+
+@vs_code_ctx.action_class("user")
+class VsCodeAction:
+  def directory() -> string: 
+    return "vscode-command-server"
+
+  def emit_pre_phrase_signal() -> bool:
+    return actions.user.live_pre_phrase_signal()  
+
+@visual_studio_ctx.action_class("user")
+class VisualStudioActions:
+  def directory() -> string:
+    return "visual-studio-commandServer"
+
+  def emit_pre_phrase_signal() -> bool:
+    print("****Visual studio pre-phrase***")
+    return actions.user.live_pre_phrase_signal()        
 
 @mac_ctx.action_class("user")
 class MacUserActions:
@@ -384,19 +425,12 @@ class LinuxUserActions:
 
 @global_ctx.action_class("user")
 class GlobalUserActions:
+  
     def emit_pre_phrase_signal() -> bool:
         # NB: We explicitly define a noop version of this action in the global
         # context here so that it doesn't do anything before phrases if you're not
         # in vscode.
         return False
-
-
-@ctx.action_class("user")
-class UserActions:
-    def emit_pre_phrase_signal() -> bool:
-        get_signal_path("prePhrase").touch()
-
-        return True
 
 
 class MissingCommunicationDir(Exception):

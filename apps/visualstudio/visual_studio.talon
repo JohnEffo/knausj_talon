@@ -123,3 +123,6 @@ uncomment that:key(ctrl-k ctrl-u)
 code insert:key(alt-i)
 extend:key(ctrl-w)
 
+
+send command: user.command_server("workbench.view.explorer")
+

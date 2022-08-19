@@ -14,10 +14,10 @@ from talon import Context, Module, actions, speech_system
 # to remove it
 STALE_TIMEOUT_MS = 60_000
 
-# The amount of time to wait for VSCode to perform a command, in seconds
+# The amount of time to wait for client application to perform a command, in seconds
 VSCODE_COMMAND_TIMEOUT_SECONDS = 3.0
 
-# When doing exponential back off waiting for vscode to perform a command, how
+# When doing exponential back off waiting for client application to perform a command, how
 # long to sleep the first time
 MINIMUM_SLEEP_TIME_SECONDS = 0.0005
 
@@ -32,21 +32,10 @@ ctx = Context()
 mac_ctx = Context()
 linux_ctx = Context()
 
-vs_code_ctx = Context()
-visual_studio_ctx= Context()
-
-vs_code_ctx.matches = r"""
-app: vscode
-"""
-
-visual_studio_ctx.matches = r"""
-app: visual_studio
-"""
-
 ctx.matches = r"""
-app: vscode
-app: visual_studio
+tag: command_client
 """
+
 mac_ctx.matches = r"""
 os: mac
 app: vscode
@@ -60,13 +49,6 @@ app: vscode
 class NotSet:
     def __repr__(self):
         return "<argument not set>"
-
-
-def run_vscode_command_by_command_palette(command_id: str):
-    """Execute command via command palette. Preserves the clipboard."""
-    actions.user.command_palette()
-    actions.user.paste(command_id)
-    actions.key("enter")
 
 
 def write_json_exclusive(path: Path, body: Any):
@@ -101,11 +83,9 @@ class Request:
 def write_request(request: Request, path: Path):
     """Converts the given request to json and writes it to the file, failing if
     the file already exists unless it is stale in which case it replaces it
-
     Args:
         request (Request): The request to serialize
         path (Path): The path to write to
-
     Raises:
         Exception: If another process has an active request file
     """
@@ -136,14 +116,13 @@ def handle_existing_request_file(path):
         robust_unlink(path)
 
 
-def run_vscode_command(
+def run_command(
     command_id: str,
     *args: str,
     wait_for_finish: bool = False,
     return_command_output: bool = False,
 ):
-    """Runs a VSCode command, using command server if available
-
+    """Runs a command, using command server if available
     Args:
         command_id (str): The ID of the VSCode command to run
         wait_for_finish (bool, optional): Whether to wait for the command to finish before returning. Defaults to False.
@@ -166,7 +145,7 @@ def run_vscode_command(
         if args or return_command_output:
             raise Exception("Must use command-server extension for advanced commands")
         print("Communication dir not found; falling back to command palette")
-        run_vscode_command_by_command_palette(command_id)
+        actions.user.command_client_fallback(command_id)
         return
 
     request_path = communication_dir_path / "request.json"
@@ -193,9 +172,9 @@ def run_vscode_command(
         print("WARNING: Found old response file")
         robust_unlink(response_path)
 
-    # Then, perform keystroke telling VSCode to execute the command in the
-    # request file.  Because only the active VSCode instance will accept
-    # keypresses, we can be sure that the active VSCode instance will be the
+    # Then, perform keystroke telling client application to execute the command in the
+    # request file.  Because only the active client application instance will accept
+    # keypresses, we can be sure that the active client application instance will be the
     # one to execute the command.
     actions.user.trigger_command_server_command_execution()
 
@@ -227,8 +206,6 @@ def get_communication_dir_path():
     Returns:
         Path: The path to the communication dir
     """
-    print(f"************************{actions.user.directory()}**********************")
-    # print(vs_code_ctx.matches[0])
     suffix = ""
 
     # NB: We don't suffix on Windows, because the temp dir is user-specific
@@ -236,7 +213,7 @@ def get_communication_dir_path():
     if hasattr(os, "getuid"):
         suffix = f"-{os.getuid()}"
 
-    return Path(gettempdir()) / f"{actions.user.directory()}{suffix}"
+    return Path(gettempdir()) / f"{actions.user.command_server_directory()}{suffix}"
 
 
 def robust_unlink(path: Path):
@@ -307,14 +284,14 @@ class Actions:
     def vscode(command_id: str):
         """Execute command via vscode command server, if available, or fallback
         to command palette."""
-        run_vscode_command(command_id)
+        run_command(command_id)
 
     def vscode_and_wait(command_id: str):
         """Execute command via vscode command server, if available, and wait
         for command to finish.  If command server not available, uses command
         palette and doesn't guarantee that it will wait for command to
         finish."""
-        run_vscode_command(command_id, wait_for_finish=True)
+        run_command(command_id, wait_for_finish=True)
 
     def vscode_with_plugin(
         command_id: str,
@@ -325,7 +302,7 @@ class Actions:
         arg5: Any = NotSet,
     ):
         """Execute command via vscode command server."""
-        run_vscode_command(
+        run_command(
             command_id,
             arg1,
             arg2,
@@ -343,7 +320,7 @@ class Actions:
         arg5: Any = NotSet,
     ):
         """Execute command via vscode command server and wait for command to finish."""
-        run_vscode_command(
+        run_command(
             command_id,
             arg1,
             arg2,
@@ -362,7 +339,7 @@ class Actions:
         arg5: Any = NotSet,
     ) -> Any:
         """Execute command via vscode command server and return command output."""
-        return run_vscode_command(
+        return run_command(
             command_id,
             arg1,
             arg2,
@@ -372,44 +349,18 @@ class Actions:
             return_command_output=True,
         )
 
-    def directory() -> string:
+    def command_server_directory() -> string:
         """Return the final directory of the command server"""
-      
 
     def trigger_command_server_command_execution():
         """Issue keystroke to trigger command server to execute command that
         was written to the file.  For internal use only"""
         actions.key("ctrl-shift-f17")
 
-    def live_pre_phrase_signal() -> bool:
-      """Used by application contexts emit_pre_phrase_signal to emit a pre phrase signal"""
-      get_signal_path("prePhrase").touch()
-      return True
-
-    def emit_pre_phrase_signal() -> bool:
-        """Touches a file to indicate that a phrase is about to begin execution"""
-  
     def did_emit_pre_phrase_signal() -> bool:
         """Indicates whether the pre-phrase signal was emitted at the start of this phrase"""
         return did_emit_pre_phrase_signal
 
-
-@vs_code_ctx.action_class("user")
-class VsCodeAction:
-  def directory() -> string: 
-    return "vscode-command-server"
-
-  def emit_pre_phrase_signal() -> bool:
-    return actions.user.live_pre_phrase_signal()  
-
-@visual_studio_ctx.action_class("user")
-class VisualStudioActions:
-  def directory() -> string:
-    return "visual-studio-commandServer"
-
-  def emit_pre_phrase_signal() -> bool:
-    print("****Visual studio pre-phrase***")
-    return actions.user.live_pre_phrase_signal()        
 
 @mac_ctx.action_class("user")
 class MacUserActions:
@@ -440,10 +391,8 @@ class MissingCommunicationDir(Exception):
 def get_signal_path(name: str) -> Path:
     """
     Get the path to a signal in the signal subdirectory.
-
     Args:
         name (str): The name of the signal
-
     Returns:
         Path: The signal path
     """

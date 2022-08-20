@@ -115,7 +115,7 @@ action list:key(alt-enter)
 
 # show
 show explorer:key(shift-alt-l)
-solution explorer:user.vscode_with_plugin("ReSharper.ReSharper_LocateInSolutionOrAssemblyExplorer")
+solution explorer:user.vscode_with_plugin("VSCommand","ReSharper.ReSharper_LocateInSolutionOrAssemblyExplorer")
   
 complete:key(ctrl-space)
 
@@ -126,5 +126,6 @@ code insert:key(alt-i)
 extend:key(ctrl-w)
 
 
-send command: user.command_server("workbench.view.explorer")
+send command: user.vscode_with_plugin("VSCommand","ReSharper.ReSharper_LocateInSolutionOrAssemblyExplorer")
+
 

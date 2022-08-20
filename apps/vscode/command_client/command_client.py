@@ -207,7 +207,7 @@ def get_communication_dir_path():
         Path: The path to the communication dir
     """
     suffix = ""
-
+    print(f"*************** path is {actions.user.command_server_directory()}")
     # NB: We don't suffix on Windows, because the temp dir is user-specific
     # anyways
     if hasattr(os, "getuid"):
@@ -360,6 +360,14 @@ class Actions:
     def did_emit_pre_phrase_signal() -> bool:
         """Indicates whether the pre-phrase signal was emitted at the start of this phrase"""
         return did_emit_pre_phrase_signal
+
+
+@ctx.action_class("user")
+class UserActions:
+    def emit_pre_phrase_signal() -> bool:
+        get_signal_path("prePhrase").touch()
+
+        return True
 
 
 @mac_ctx.action_class("user")

@@ -115,6 +115,8 @@ action list:key(alt-enter)
 
 # show
 show explorer:key(shift-alt-l)
+solution explorer:user.vscode_with_plugin("ReSharper.ReSharper_LocateInSolutionOrAssemblyExplorer")
+  
 complete:key(ctrl-space)
 
 build this: key(shift-ctrl-b)

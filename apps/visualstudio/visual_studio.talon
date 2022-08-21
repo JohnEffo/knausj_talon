@@ -99,7 +99,7 @@ fold definitions: key(ctrl-m ctrl-o)
 #Debugging
 toggle break: key(f9)
 step over: key(f10)
-debug step into: key(f11)
+step into: key(f11)
 debug step out [of]: key(f10)
 debug start: key(f5)
 debug stopper: key(shift-f5)
@@ -127,5 +127,8 @@ extend:key(ctrl-w)
 
 
 send command: user.vscode_with_plugin("VSCommand","ReSharper.ReSharper_LocateInSolutionOrAssemblyExplorer")
+show tabs: user.vscode_with_plugin("VSCommand","Window.Windows")
+
+
 
 

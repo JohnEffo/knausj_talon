@@ -27,7 +27,6 @@ did_emit_pre_phrase_signal = False
 
 mod = Module()
 
-global_ctx = Context()
 ctx = Context()
 mac_ctx = Context()
 linux_ctx = Context()
@@ -49,6 +48,10 @@ app: vscode
 class NotSet:
     def __repr__(self):
         return "<argument not set>"
+
+
+class NoFileServerException(Exception):
+    pass
 
 
 def write_json_exclusive(path: Path, body: Any):
@@ -118,19 +121,20 @@ def handle_existing_request_file(path):
 
 def run_command(
     command_id: str,
-    *args: str,
+    *args,
     wait_for_finish: bool = False,
     return_command_output: bool = False,
 ):
     """Runs a command, using command server if available
     Args:
-        command_id (str): The ID of the VSCode command to run
+        command_id (str): The ID of the command to run.
+        args: The arguments to the command.
         wait_for_finish (bool, optional): Whether to wait for the command to finish before returning. Defaults to False.
         return_command_output (bool, optional): Whether to return the output of the command. Defaults to False.
 
     Raises:
         Exception: If there is an issue with the file-based communication, or
-        VSCode raises an exception
+        application raises an exception
 
     Returns:
         Object: The response from the command, if requested.
@@ -144,9 +148,9 @@ def run_command(
     if not communication_dir_path.exists():
         if args or return_command_output:
             raise Exception("Must use command-server extension for advanced commands")
-        print("Communication dir not found; falling back to command palette")
-        actions.user.command_client_fallback(command_id)
-        return
+        raise NoFileServerException(
+            "Communication dir not found; falling back to command palette"
+        )
 
     request_path = communication_dir_path / "request.json"
     response_path = communication_dir_path / "response.json"
@@ -281,19 +285,7 @@ def read_json_with_timeout(path: str) -> Any:
 
 @mod.action_class
 class Actions:
-    def vscode(command_id: str):
-        """Execute command via vscode command server, if available, or fallback
-        to command palette."""
-        run_command(command_id)
-
-    def vscode_and_wait(command_id: str):
-        """Execute command via vscode command server, if available, and wait
-        for command to finish.  If command server not available, uses command
-        palette and doesn't guarantee that it will wait for command to
-        finish."""
-        run_command(command_id, wait_for_finish=True)
-
-    def vscode_with_plugin(
+    def run_rpc_command(
         command_id: str,
         arg1: Any = NotSet,
         arg2: Any = NotSet,
@@ -301,7 +293,7 @@ class Actions:
         arg4: Any = NotSet,
         arg5: Any = NotSet,
     ):
-        """Execute command via vscode command server."""
+        """Execute command via application command server."""
         run_command(
             command_id,
             arg1,
@@ -311,7 +303,7 @@ class Actions:
             arg5,
         )
 
-    def vscode_with_plugin_and_wait(
+    def run_rpc_command_and_wait(
         command_id: str,
         arg1: Any = NotSet,
         arg2: Any = NotSet,
@@ -319,7 +311,7 @@ class Actions:
         arg4: Any = NotSet,
         arg5: Any = NotSet,
     ):
-        """Execute command via vscode command server and wait for command to finish."""
+        """Execute command via application command server and wait for command to finish."""
         run_command(
             command_id,
             arg1,
@@ -330,7 +322,7 @@ class Actions:
             wait_for_finish=True,
         )
 
-    def vscode_get(
+    def run_rpc_command_get(
         command_id: str,
         arg1: Any = NotSet,
         arg2: Any = NotSet,
@@ -338,7 +330,7 @@ class Actions:
         arg4: Any = NotSet,
         arg5: Any = NotSet,
     ) -> Any:
-        """Execute command via vscode command server and return command output."""
+        """Execute command via application command server and return command output."""
         return run_command(
             command_id,
             arg1,
@@ -349,7 +341,7 @@ class Actions:
             return_command_output=True,
         )
 
-    def command_server_directory() -> string:
+    def command_server_directory() -> str:
         """Return the final directory of the command server"""
 
     def trigger_command_server_command_execution():
@@ -361,13 +353,8 @@ class Actions:
         """Indicates whether the pre-phrase signal was emitted at the start of this phrase"""
         return did_emit_pre_phrase_signal
 
-
-@ctx.action_class("user")
-class UserActions:
-    def emit_pre_phrase_signal() -> bool:
-        get_signal_path("prePhrase").touch()
-
-        return True
+    def command_client_fallback(command_id: str):
+        """The strategy to use when no command server directory is located for the the application"""
 
 
 @mac_ctx.action_class("user")
@@ -382,14 +369,12 @@ class LinuxUserActions:
         actions.key("ctrl-shift-alt-p")
 
 
-@global_ctx.action_class("user")
-class GlobalUserActions:
-  
+@ctx.action_class("user")
+class UserActions:
     def emit_pre_phrase_signal() -> bool:
-        # NB: We explicitly define a noop version of this action in the global
-        # context here so that it doesn't do anything before phrases if you're not
-        # in vscode.
-        return False
+        get_signal_path("prePhrase").touch()
+
+        return True
 
 
 class MissingCommunicationDir(Exception):
@@ -399,8 +384,10 @@ class MissingCommunicationDir(Exception):
 def get_signal_path(name: str) -> Path:
     """
     Get the path to a signal in the signal subdirectory.
+
     Args:
         name (str): The name of the signal
+
     Returns:
         Path: The signal path
     """
@@ -418,7 +405,6 @@ def get_signal_path(name: str) -> Path:
 def pre_phrase(_: Any):
     try:
         global did_emit_pre_phrase_signal
-
         did_emit_pre_phrase_signal = actions.user.emit_pre_phrase_signal()
     except MissingCommunicationDir:
         pass

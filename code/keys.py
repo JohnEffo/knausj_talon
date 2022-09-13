@@ -1,6 +1,6 @@
 from talon import Context, Module, actions, app
 
-default_alphabet = "ask bat cap drum each fine gust host ill just kong look made near odd pit quench red sun trap urge vest whale plex yank zip".split(
+default_alphabet = "ask bat cap drum each fine gust host ill jail kong look made near odd pit quench red sun trap urge vest whale plex yank zip".split(
     " "
 )
 letters_string = "abcdefghijklmnopqrstuvwxyz"
@@ -157,8 +157,8 @@ symbol_key_words = {
     "quote": "'",
     "question": "?",
     "apostrophe": "'",
-    "left square": "[",
-    "right square": "]",
+    "left box": "[",
+    "right b0x": "]",
     "slash": "/",
     "backslash": "\\",
     "minus": "-",
@@ -172,8 +172,10 @@ symbol_key_words = {
     "paren": "(",
     "L paren": "(",
     "left paren": "(",
+    "left round": "(",
     "right paren": ")",
     "left brace": "{",
+    "left curly": "{",
     "brack": "{",
     "bracket": "{",
     "left bracket": "{",
@@ -181,12 +183,15 @@ symbol_key_words = {
     "right brace": "}",
     "r brack": "}",
     "r bracket": "}",
+    "right curly": "}",
     "right bracket": "}",
     "angle": "<",
     "left angle": "<",
+    "left diamon": "<",
     "less than": "<",
     "rangle": ">",
     "right angle": ">",
+    "right diamon": ">",
     "greater than": ">",
     "star": "*",
     "hash": "#",
@@ -196,6 +201,8 @@ symbol_key_words = {
     "pipe": "|",
     "dubquote": '"',
     "double quote": '"',
+    "quad": '"',
+
     # Currencies
     "dollar": "$",
     "pound": "£",

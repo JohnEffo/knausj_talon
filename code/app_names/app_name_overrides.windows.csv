@@ -6,4 +6,5 @@ app, slack.exe
 lockapp, slack.exe
 pycharm, pycharm64.exe
 webstorm, webstorm64.exe
-heavy,VisualStudio.d7383246
+heavy,devenv.exe
+terminal,WindowsTerminal.exe

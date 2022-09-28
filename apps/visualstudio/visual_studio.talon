@@ -113,8 +113,8 @@ ref gen: key(alt-i)
 action list:key(alt-enter)
 
 # show
-show explorer:key(shift-alt-l)
-solution explorer:user.vscode_with_plugin("VSCommand","ReSharper.ReSharper_LocateInSolutionOrAssemblyExplorer")
+show explorer:user.run_rpc_command("VSCommand","ReSharper.ReSharper_LocateInSolutionOrAssemblyExplorer")
+solution explorer:user.run_rpc_command("VSCommand","ReSharper.ReSharper_LocateInSolutionOrAssemblyExplorer")
   
 complete:key(ctrl-space)
 
@@ -124,10 +124,8 @@ uncomment that:key(ctrl-k ctrl-u)
 code insert:key(alt-i)
 extend:key(ctrl-w)
 
+indent : user.run_rpc_command("VSCommand", "ReSharper_Reindent")
 
-send command: user.vscode_with_plugin("VSCommand","ReSharper.ReSharper_LocateInSolutionOrAssemblyExplorer")
-show tabs: user.vscode_with_plugin("VSCommand","Window.Windows")
-
-
-
+send command: user.run_rpc_command("VSCommand","ReSharper.ReSharper_LocateInSolutionOrAssemblyExplorer")
+show tabs: user.run_rpc_command("VSCommand","Window.Windows")
 

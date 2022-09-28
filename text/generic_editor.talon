@@ -1,113 +1,78 @@
-find it:
-    edit.find()
+find it: edit.find()
 
-next one:
-    edit.find_next()
+next one: edit.find_next()
 
-drain:
-    edit.word_left()
+go word left: edit.word_left()
 
-step:
-    edit.word_right()
+go word right: edit.word_right()
 
-tug:
-    edit.left()
+go left: edit.left()
 
-push:
-    edit.right()
+go right: edit.right()
 
-north:
-    edit.up()
+go up: edit.up()
 
-south:
-    edit.down()
+go down: edit.down()
 
-head:
-    edit.line_start()
+go line start: edit.line_start()
 
-tail:
-    edit.line_end()
+go line end: edit.line_end()
 
 go way left:
     edit.line_start()
 
-go way right:
-    edit.line_end()
+go way right: edit.line_end()
 
-go way down:
-    edit.file_end()
+go way down: edit.file_end()
 
-go way up:
-    edit.file_start()
+go way up: edit.file_start()
 
-go bottom:
-    edit.file_end()
+go bottom: edit.file_end()
 
-go top:
-    edit.file_start()
+go top: edit.file_start()
 
-go page down:
-    edit.page_down()
+go page down: edit.page_down()
 
-go pbage up:
-    edit.page_up()
+go page up: edit.page_up()
 
 # selecting
-take line:
-    edit.select_line()
+select line: edit.select_line()
 
-select all:
-    edit.select_all()
+select all: edit.select_all()
 
-take tug:
-    edit.extend_left()
+select left: edit.extend_left()
 
-take push:
-    edit.extend_right()
+select right: edit.extend_right()
 
-take up:
-    edit.extend_line_up()
+select up: edit.extend_line_up()
 
-take down:
-    edit.extend_line_down()
+select down: edit.extend_line_down()
 
-take word:
-    edit.select_word()
+select word: edit.select_word()
 
-take drain:
-    edit.extend_word_left()
+select word left: edit.extend_word_left()
 
-take step:
-    edit.extend_word_right()
+select word right: edit.extend_word_right()
 
-take head:
-    edit.extend_line_start()
+select way left: edit.extend_line_start()
 
-take tail:
-    edit.extend_line_end()
+select way right: edit.extend_line_end()
 
-take way up:
-    edit.extend_file_start()
+select way up: edit.extend_file_start()
 
-take way down:
-    edit.extend_file_end()
+select way down: edit.extend_file_end()
 
 # editing
-indent [more]:
-    edit.indent_more()
+indent [more]: edit.indent_more()
 
-(indent less | dedent):
-    edit.indent_less()
+(indent less | out dent): edit.indent_less()
 
 # deleting
-clear line:
-    edit.delete_line()
+clear line: edit.delete_line()
 
-clear tug:
-    key(backspace)
+clear left: key(backspace)
 
-clear pusht:
-    key(delete)
+clear right: key(delete)
 
 clear north:
     edit.extend_line_up()
@@ -117,8 +82,7 @@ clear south:
     edit.extend_line_down()
     edit.delete()
 
-clear word:
-    edit.delete_word()
+clear word: edit.delete_word()
 
 clear drain:
     edit.extend_word_left()
@@ -217,5 +181,5 @@ cut line:
     edit.cut()
 
 (pace | paste) all:
-  edit.select_all()
-  edit.paste()
+    edit.select_all()
+    edit.paste()

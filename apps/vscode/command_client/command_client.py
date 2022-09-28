@@ -14,10 +14,10 @@ from talon import Context, Module, actions, speech_system
 # to remove it
 STALE_TIMEOUT_MS = 60_000
 
-# The amount of time to wait for client application to perform a command, in seconds
-VSCODE_COMMAND_TIMEOUT_SECONDS = 3.0
+# The amount of time to wait for application to perform a command, in seconds
+RPC_COMMAND_TIMEOUT_SECONDS = 3.0
 
-# When doing exponential back off waiting for client application to perform a command, how
+# When doing exponential back off waiting for application to perform a command, how
 # long to sleep the first time
 MINIMUM_SLEEP_TIME_SECONDS = 0.0005
 
@@ -32,7 +32,7 @@ mac_ctx = Context()
 linux_ctx = Context()
 
 ctx.matches = r"""
-tag: command_client
+tag: user.command_client
 """
 
 mac_ctx.matches = r"""
@@ -148,9 +148,7 @@ def run_command(
     if not communication_dir_path.exists():
         if args or return_command_output:
             raise Exception("Must use command-server extension for advanced commands")
-        raise NoFileServerException(
-            "Communication dir not found; falling back to command palette"
-        )
+        raise NoFileServerException("Communication directory not found")
 
     request_path = communication_dir_path / "request.json"
     response_path = communication_dir_path / "response.json"
@@ -176,9 +174,9 @@ def run_command(
         print("WARNING: Found old response file")
         robust_unlink(response_path)
 
-    # Then, perform keystroke telling client application to execute the command in the
-    # request file.  Because only the active client application instance will accept
-    # keypresses, we can be sure that the active client application instance will be the
+    # Then, perform keystroke telling application to execute the command in the
+    # request file.  Because only the active application instance will accept
+    # keypresses, we can be sure that the active application instance will be the
     # one to execute the command.
     actions.user.trigger_command_server_command_execution()
 
@@ -257,7 +255,7 @@ def read_json_with_timeout(path: str) -> Any:
     Returns:
         Any: The json-decoded contents of the file
     """
-    timeout_time = time.perf_counter() + VSCODE_COMMAND_TIMEOUT_SECONDS
+    timeout_time = time.perf_counter() + RPC_COMMAND_TIMEOUT_SECONDS
     sleep_time = MINIMUM_SLEEP_TIME_SECONDS
     while True:
         try:
@@ -293,7 +291,7 @@ class Actions:
         arg4: Any = NotSet,
         arg5: Any = NotSet,
     ):
-        """Execute command via application command server."""
+        """Execute command via RPC."""
         run_command(
             command_id,
             arg1,
@@ -342,15 +340,24 @@ class Actions:
         )
 
     def command_server_directory() -> str:
-        """Return the final directory of the command server"""
+        """Return the directory of the command server"""
 
     def trigger_command_server_command_execution():
         """Issue keystroke to trigger command server to execute command that
         was written to the file.  For internal use only"""
         actions.key("ctrl-shift-f17")
 
+    def emit_pre_phrase_signal() -> bool:
+        """
+        If in an application supporting the command client, returns True
+        and touches a file to indicate that a phrase is beginning execution.
+        Otherwise does nothing and returns False.
+        """
+        return False
+
     def did_emit_pre_phrase_signal() -> bool:
         """Indicates whether the pre-phrase signal was emitted at the start of this phrase"""
+        # NB: This action is used by cursorless; please don't delete it :)
         return did_emit_pre_phrase_signal
 
     def command_client_fallback(command_id: str):
@@ -371,9 +378,8 @@ class LinuxUserActions:
 
 @ctx.action_class("user")
 class UserActions:
-    def emit_pre_phrase_signal() -> bool:
+    def emit_pre_phrase_signal():
         get_signal_path("prePhrase").touch()
-
         return True
 
 

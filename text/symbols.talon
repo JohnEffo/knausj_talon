@@ -1,7 +1,6 @@
 double dash: "--"
 triple quote: "'''"
-(triple grave | triple back tick | gravy):
-    insert("```")
+(triple grave | triple back tick | gravy): insert("```")
 (dot dot | dotdot): ".."
 ellipses: "..."
 (comma and | spamma): ", "
@@ -44,4 +43,4 @@ quote that:
     user.paste('"{text}"')
 (grave | back tick) that:
     text = edit.selected_text()
-    user.paste('`{text}`')
+    user.paste("`{text}`")

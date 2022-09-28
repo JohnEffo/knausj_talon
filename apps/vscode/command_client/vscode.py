@@ -1,4 +1,3 @@
-import string
 from pickle import FALSE
 from typing import Any
 
@@ -16,7 +15,7 @@ mod = Module()
 
 
 def command_server_or_client_fallback(command_id: str, wait: bool):
-    """Execute command via command server and us command pallete if directory not present."""
+    """Execute command via command server, falling back to command palette if directory not present."""
     try:
         run_command(command_id, wait_for_finish=wait)
     except NoFileServerException:
@@ -24,7 +23,7 @@ def command_server_or_client_fallback(command_id: str, wait: bool):
         actions.user.paste(command_id)
         actions.key("enter")
         print(
-            "Command issues via command palette for better performance install the VSCode extension for Talon"
+            "Command server directory not found; falling back to command palette.  For better performance, install the VSCode extension for Talon: https://marketplace.visualstudio.com/items?itemName=pokey.talon"
         )
 
 
@@ -34,8 +33,6 @@ class VsCodeAction:
         return "vscode-command-server"
 
 
-# These commands are shims, to provide backwards compatibility, they may be removed in the fuuture.
-# Prefer the run_command... version in command_client.
 @mod.action_class
 class Actions:
     def vscode(command_id: str):
@@ -50,6 +47,8 @@ class Actions:
         finish."""
         command_server_or_client_fallback(command_id, True)
 
+    # These commands are shims, to provide backwards compatibility, they may be removed in the fuuture.
+    # Prefer the run_command... version in command_client.
     def vscode_with_plugin(
         command_id: str,
         arg1: Any = NotSet,
@@ -59,7 +58,7 @@ class Actions:
         arg5: Any = NotSet,
     ):
         """Execute command via vscode command server."""
-        actions.user.run_command(
+        actions.user.run_rpc_command(
             command_id,
             arg1,
             arg2,

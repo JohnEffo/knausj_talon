@@ -2,21 +2,21 @@ find it: edit.find()
 
 next one: edit.find_next()
 
-go word left: edit.word_left()
+drain: edit.word_left()
 
-go word right: edit.word_right()
+step: edit.word_right()
 
-go left: edit.left()
+tug: edit.left()
 
-go right: edit.right()
+push: edit.right()
 
-go up: edit.up()
+nort: edit.up()
 
-go down: edit.down()
+south: edit.down()
 
-go line start: edit.line_start()
+head: edit.line_start()
 
-go line end: edit.line_end()
+tail: edit.line_end()
 
 go way left:
     edit.line_start()
@@ -36,31 +36,31 @@ go page down: edit.page_down()
 go page up: edit.page_up()
 
 # selecting
-select line: edit.select_line()
+take line: edit.select_line()
 
-select all: edit.select_all()
+take all: edit.select_all()
 
-select left: edit.extend_left()
+take drain: edit.extend_left()
 
 select right: edit.extend_right()
 
-select up: edit.extend_line_up()
+take north: edit.extend_line_up()
 
-select down: edit.extend_line_down()
+take south: edit.extend_line_down()
 
-select word: edit.select_word()
+take word: edit.select_word()
 
-select word left: edit.extend_word_left()
+take drain: edit.extend_word_left()
 
-select word right: edit.extend_word_right()
+take step: edit.extend_word_right()
 
-select way left: edit.extend_line_start()
+take head: edit.extend_line_start()
 
-select way right: edit.extend_line_end()
+take tail: edit.extend_line_end()
 
-select way up: edit.extend_file_start()
+take top: edit.extend_file_start()
 
-select way down: edit.extend_file_end()
+take bottom: edit.extend_file_end()
 
 # editing
 indent [more]: edit.indent_more()

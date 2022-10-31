@@ -37,6 +37,8 @@ and app.exe: Code.exe
 os: windows
 and app.exe: Code-Insiders.exe
 os: windows
+and app.exe: Code - Insiders.exe
+os: windows
 and app.name: VSCodium
 os: windows
 and app.exe: VSCodium.exe

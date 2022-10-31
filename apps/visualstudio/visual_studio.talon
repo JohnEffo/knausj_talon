@@ -20,6 +20,17 @@ panel breakpoints: key(ctrl-alt-b)
 panel terminal: key(ctrl-')
 panel test: key(ctrl-alt-r)
 panel error:key(ctrl-\ ctrl-e)
+panel command:user.run_rpc_command("VSCommand","View.CommandWindow")
+git changes:user.run_rpc_command("VSCommand","Team.Git.GoToGitChanges")
+panel close:user.run_rpc_command("VSCommand","Window.Close")
+
+
+#Tabs
+tab next:user.run_rpc_command("VSCommand","Window.NextTab")
+tab back:user.run_rpc_command("VSCommand","Window.PreviousTab")
+
+#splits
+cross:user.run_rpc_command("VSCommand","Window.NextDocumentWindow")
 
 # Settings
 show settings: key(alt-t o)
@@ -27,7 +38,7 @@ show settings: key(alt-t o)
 #show snippets:
 
 # Display
-fullscreen switch: key(shift-alt-enter)
+fullscreen: key(shift-alt-enter)
 wrap switch: key(ctrl-e ctrl-w)
 
 # File Commands
@@ -42,7 +53,6 @@ file reveal: key(ctrl-[ s)
 # Language Features
 hint show: key(ctrl-shift-space)
 definition peek: key(alt-f12)
-references find: key(shift-f12)
 format that: key(ctrl-alt-enter)
 fix format: key(ctrl-k ctrl-f)
 imports fix: key(ctrl-r ctrl-g)
@@ -61,6 +71,7 @@ ref parameter:key(ctrl-alt-p)
 ref var:key(ctrl-alt-v)
 
 # code navigation
+all references:user.run_rpc_command("VSCommand","Edit.FindAllReferences")   
 (go declaration | follow): key(ctrl-b)
 go def: key(ctrl-b)
 go back: key(ctrl--)
@@ -99,9 +110,10 @@ fold definitions: key(ctrl-m ctrl-o)
 toggle break: key(f9)
 step over: key(f10)
 step into: key(f11)
-debug step out [of]: key(f10)
+step out [of]: key(f10)
 debug start: key(f5)
-debug stopper: key(shift-f5)
+debug stop: user.run_rpc_command("VSCommand","Debug.StopDebuggingia")
+
 debug continue: key(f5)
 
 # Tests
@@ -126,6 +138,8 @@ extend:key(ctrl-w)
 
 indent : user.run_rpc_command("VSCommand", "ReSharper_Reindent")
 
-send command: user.run_rpc_command("VSCommand","ReSharper.ReSharper_LocateInSolutionOrAssemblyExplorer")
 show tabs: user.run_rpc_command("VSCommand","Window.Windows")
 
+# scout <user.cursorless_target>:
+#   user.cursorless_command("setSelection", cursorless_target)
+#   user.run_rpc_command("VSCommand","Edit.Find")

@@ -1,8 +1,11 @@
 -
 settings():
 
+    #Make timeout for commands longer
+    speech.timeout = 0.4
+    
     # Adjust the scale of the imgui to my liking
-    imgui.scale = 1.3
+    imgui.scale = 1.2
 
     # Enable if you'd like the picker gui to automatically appear when explorer has focus
     user.file_manager_auto_show_pickers = 0

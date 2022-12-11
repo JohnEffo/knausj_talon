@@ -3,7 +3,7 @@ app: windows_terminal
 tag(): user.tabs
 tag(): terminal 
 tag(): user.git
-tag(): user.terraform
+tag(): user.terraform_client
 
 # activates the implementation of the commands/functions in generic_terminal
 tag(): user.generic_windows_shell
@@ -56,3 +56,4 @@ find solutions:
   key(ctrl-space)
 
 tab rename:key(ctrl-t)
+take all:key(shift-ctrl-a)

@@ -55,7 +55,11 @@ enum:"enum "
 get:"get;"
 set:"set;"
 bool:"bool"
-
+yield:"yield "
+List:"List"
+type of:  
+  "typeof()"
+  key(left)
 
 #snippets
 constructor:"ctor"

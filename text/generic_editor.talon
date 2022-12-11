@@ -10,7 +10,7 @@ tug: edit.left()
 
 push: edit.right()
 
-nort: edit.up()
+north: edit.up()
 
 south: edit.down()
 

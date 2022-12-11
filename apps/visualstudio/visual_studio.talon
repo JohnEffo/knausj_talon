@@ -94,6 +94,9 @@ member next:key(alt-down)
 member last:key(alt-up)
 item next:key(f8)
 issue next:key(f12)
+next error:user.run_rpc_command("VSCommand","View.NextError")
+previous error:user.run_rpc_command("VSCommand","View.PreviousError")
+
 
 # Bookmarks.
 go (bookmarks |marks): key(ctrl-k ctrl-w)

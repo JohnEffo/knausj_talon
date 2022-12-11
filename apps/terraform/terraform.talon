@@ -13,4 +13,5 @@ terraform init: "terraform init"
 terraform plan: "terraform plan"
 terraform state move: "terraform state mv "
 terraform validate: "terraform validate"
+terraform workspace: "terraform workspace "
 

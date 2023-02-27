@@ -20,3 +20,6 @@ file save all: edit.save_all()
     user.insert_many(symbol_key_list)
     insert(" ")
 slap: edit.line_insert_down()
+dictate <user.prose> over: auto_insert(prose or "")
+
+

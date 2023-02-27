@@ -151,6 +151,7 @@ formatters_words = {
     "snake": formatters_dict["SNAKE_CASE"],
     "string": formatters_dict["SINGLE_QUOTED_STRING"],
     "title": formatters_dict["CAPITALIZE_ALL_WORDS"],
+    "start cap": formatters_dict["CAPITALIZE_FIRST_WORD"]
 }
 
 all_formatters = {}

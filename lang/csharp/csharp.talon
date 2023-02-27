@@ -27,14 +27,57 @@ settings():
 
 constant:"const "
 void: "void "
-new:"new "
-record:"record "
+
+new <user.text>:
+  "new "
+   insert(user.formatted_text(text, "PUBLIC_CAMEL_CASE"))
+   "()"
+   key(left)
+
+record <user.text>:
+  "record "
+  insert(user.formatted_text(text, "PUBLIC_CAMEL_CASE"))  
 interface: "interface "
 using: "using "
-variable: "var "
-for each: "foreach"
-for loop: "for"
-throw: "throw "
+variable <user.text>: 
+  "var "
+  insert(user.formatted_text(text, "PRIVATE_CAMEL_CASE"))
+  "="
+
+dictionary:
+  "Dictionary<>"
+  key(left)
+
+collection:
+  "Collection<>"
+  key(left)
+
+ill collection:
+  "ICollection<>"
+  key(left)
+
+list:
+  "List<>"
+  key(left)
+
+ill list:
+  "IList<>"
+  key(left)
+
+ill enumberable:
+  "IEnumerable<>"
+  key(left)
+
+null:"null"
+
+try:"try"
+for each: 
+    "foreach"
+    key(tab)
+for loop: 
+  "for"
+  key(tab)
+throw:   "throw "
 this:"this "
 public:"public "
 private:"private "
@@ -42,12 +85,21 @@ readonly:"readonly "
 integer:"int "
 string:"string "
 return:"return "
-if: "if"
+if: 
+  "if"
+  key(tab)
 switch:"switch"
 async:"async "
 await:"await "
 task:"Task"
-class:"class "
+class <user.text>:
+  "class "
+   insert(user.formatted_text(text, "PUBLIC_CAMEL_CASE"))
+   "{}"
+   key(left)
+   key(enter)
+
+internal:"internal "
 static:"static "
 when:"when "
 state new: "new "
@@ -60,9 +112,13 @@ List:"List"
 type of:  
   "typeof()"
   key(left)
+false:"false"
+true:"true"
 
 #snippets
-constructor:"ctor"
+constructor:
+  "ctor"
+  key(tab)
 
 # Aattributes
 attribute get:"[HttpGet]"

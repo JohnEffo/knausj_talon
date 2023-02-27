@@ -49,3 +49,6 @@ git commit highlighted:
     insert("git add ")
     edit.paste()
     insert("\ngit commit\n")
+
+git log:
+  "git lg -"

@@ -101,8 +101,8 @@ previous error:user.run_rpc_command("VSCommand","View.PreviousError")
 # Bookmarks.
 go (bookmarks |marks): key(ctrl-k ctrl-w)
 toggle (bookmark |mark): key(ctrl-k ctrl-k)
-go next (bookmark |mark): key(ctrl-k ctrl-n)
-go last (bookmark |mark): key(ctrl-k ctrl-p)
+[go] next (bookmark |mark): key(ctrl-k ctrl-n)
+[go] last (bookmark |mark): key(ctrl-k ctrl-p)
 
 # Folding
 toggle fold: key(ctrl-m ctrl-m)
@@ -115,7 +115,8 @@ step over: key(f10)
 step into: key(f11)
 step out [of]: key(f10)
 debug start: key(f5)
-debug stop: user.run_rpc_command("VSCommand","Debug.StopDebuggingia")
+debug stop: user.run_rpc_command("VSCommand","Debug.StopDebugging")
+run to cursor:user.run_rpc_command("VSCommand","Debug.RunToCursor")
 
 debug continue: key(f5)
 

@@ -50,8 +50,6 @@ take south: edit.extend_line_down()
 
 take word: edit.select_word()
 
-take drain: edit.extend_word_left()
-
 take step: edit.extend_word_right()
 
 take head: edit.extend_line_start()

@@ -50,5 +50,11 @@ git commit highlighted:
     edit.paste()
     insert("\ngit commit\n")
 
+git delete highlighted:
+  edit.copy()
+  insert("git branch -d ")
+  edit.paste()
+  key(enter)
+
 git log:
   "git lg -"

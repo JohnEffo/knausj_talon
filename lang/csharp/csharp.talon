@@ -28,18 +28,22 @@ settings():
 constant:"const "
 void: "void "
 
-new <user.text>:
+new:"new "
+make new <user.text>:
   "new "
    insert(user.formatted_text(text, "PUBLIC_CAMEL_CASE"))
    "()"
    key(left)
 
-record <user.text>:
+record: "record "
+make record <user.text>:
   "record "
   insert(user.formatted_text(text, "PUBLIC_CAMEL_CASE"))  
 interface: "interface "
 using: "using "
-variable <user.text>: 
+
+variable: "var "
+make variable <user.text>: 
   "var "
   insert(user.formatted_text(text, "PRIVATE_CAMEL_CASE"))
   "="
@@ -102,7 +106,6 @@ class <user.text>:
 internal:"internal "
 static:"static "
 when:"when "
-state new: "new "
 enum:"enum "
 get:"get;"
 set:"set;"

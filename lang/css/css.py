@@ -43,7 +43,7 @@ global_ctx.lists["self.css_at_rule"] = [
     "supports",
     # other nested
     "page",
-    "font-face",
+    "fontface",
     "keyframes",
     # CSS Modules
     "value",

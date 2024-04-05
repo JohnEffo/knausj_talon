@@ -3,7 +3,7 @@ my email: "john.efford@puregym.com"
 exerp:"exerp"
 azure:"Azure"
 
-pause mouse:key(f15)
+pause mouse:key(shift-f3)
 
 # Shh Commands
 shenter:key(enter)
@@ -14,4 +14,4 @@ shcop:key(ctrl-c)
 shpa:key(ctrl-v)
 shcut:key(ctrl-x)
 
-
+ 

@@ -14,6 +14,14 @@ rerun [<user.text>]: user.terminal_rerun_search(text or "")
 rerun search: user.terminal_rerun_search("")
 kill all: user.terminal_kill_all()
 
+dotnet new:"dotnet new "
+dotnet tool :"dotnet tool "
+dotnet build:"dotnet build"
+dotnet test:"dotnet test"
+dotnet solution:"dotnet sln "
+dotnet publish:"dotnet publish "
+
+
 copy paste:
     edit.copy()
     sleep(50ms)

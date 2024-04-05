@@ -4,6 +4,7 @@ tag(): user.tabs
 tag(): terminal 
 tag(): user.git
 tag(): user.terraform_client
+tag(): user.docker
 
 # activates the implementation of the commands/functions in terminal.talon
 tag(): user.generic_windows_shell
@@ -57,3 +58,5 @@ find solutions:
 
 tab rename:key(ctrl-t)
 take all:key(shift-ctrl-a)
+
+net command <phrase>:"dotnet {phrase} "

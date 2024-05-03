@@ -18,6 +18,9 @@ mode: command
     user.draft_show()
     user.draft_resize(600, 200)
 
+draft hide:
+  user.draft_hide()
+
 ^draft show large:
     # Do this toggle so we can have focus when saying 'draft show'
     user.draft_hide()

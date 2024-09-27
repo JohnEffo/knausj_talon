@@ -34,6 +34,7 @@ cross:user.run_rpc_command("VSCommand","Window.NextDocumentWindow")
 
 # Settings
 show settings: key(alt-t o)
+show context:key(shift-f10)
 #show shortcuts:
 #show snippets:
 
@@ -68,12 +69,15 @@ ref reorder parameters: key(ctrl-r ctrl-o)
 ref remove parameters: key(ctrl-r ctrl-v)
 ref rename: key(ctrl-r ctrl-r)
 ref parameter:key(ctrl-alt-p)
-ref var:key(ctrl-alt-v)
+ref var:user.run_rpc_command("VSCommand","ReSharper.ReSharper_IntroVariable")
+ref type hints: user.run_rpc_command("VSCommand","ReSharper_ToggleInlayHints") 
+run solution unit tests:user.run_rpc_command("VSCommand","ReSharper.ReSharper_UnitTestRunSolution")
+
 
 # code navigation
 all references:user.run_rpc_command("VSCommand","Edit.FindAllReferences")   
 (go declaration | follow): key(ctrl-b)
-go def: key(ctrl-b)
+go def: :user.run_rpc_command("VSCommand","Edit.GotoDefinition")
 go back: key(ctrl--)
 go forward: key(ctrl-shift--)
 go implementation: key(ctrl-f12)
@@ -82,7 +86,7 @@ go recent:
     key(ctrl-e)
 go type [<user.text>] :
     # Resharper
-    key(ctrl-n)
+    key(ctrl-t)
     sleep(100ms)
     insert(text or "")
 go member [<user.text>]:
@@ -125,7 +129,9 @@ test run: key(ctrl-t ctrl-r)
 test debug: key(ctrl-t ctrl-d)
 
 # Person
-ref gen: key(alt-i)
+ref gen: user.run_rpc_command("VSCommand","ReSharper.ReSharper_Generate") 
+
+
 action list:key(alt-enter)
 
 # show

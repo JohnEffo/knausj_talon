@@ -3,7 +3,6 @@ work email: "john.efford@smartwyre.com"
 azure:"Azure"
 
 pause mouse:key(shift-f3)
-smart wire: "smartwyre"
 # Shh Commands
 shenter:key(enter)
 poke: key(enter)

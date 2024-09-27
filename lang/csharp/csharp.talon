@@ -35,7 +35,9 @@ make new <user.text>:
    "()"
    key(left)
 
+class : "class "
 record: "record "
+sealed: "sealed "
 make record <user.text>:
   "record "
   insert(user.formatted_text(text, "PUBLIC_CAMEL_CASE"))  

@@ -14,12 +14,18 @@ rerun [<user.text>]: user.terminal_rerun_search(text or "")
 rerun search: user.terminal_rerun_search("")
 kill all: user.terminal_kill_all()
 
+
 dotnet new:"dotnet new "
 dotnet tool :"dotnet tool "
 dotnet build:"dotnet build"
 dotnet test:"dotnet test"
 dotnet solution:"dotnet sln "
 dotnet publish:"dotnet publish "
+enity framework [<user.text>]:
+     "dotnet ef "
+     insert(user.text or "")
+     " "
+
 
 
 copy paste:

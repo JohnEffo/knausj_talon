@@ -71,8 +71,9 @@ ref rename: key(ctrl-r ctrl-r)
 ref parameter:key(ctrl-alt-p)
 ref var:user.run_rpc_command("VSCommand","ReSharper.ReSharper_IntroVariable")
 ref type hints: user.run_rpc_command("VSCommand","ReSharper_ToggleInlayHints") 
-run solution unit tests:user.run_rpc_command("VSCommand","ReSharper.ReSharper_UnitTestRunSolution")
-
+test run all: tests:user.run_rpc_command("VSCommand","ReSharper.ReSharper_UnitTestRunSolution")
+test run: user.run_rpc_command("VSCommand","ReSharper.ReSharper_UnitTestRunFromContext")  
+test debug: user.run_rpc_command("VSCommand","ReSharper.ReSharper_UnitTestDebugContext")
 
 # code navigation
 all references:user.run_rpc_command("VSCommand","Edit.FindAllReferences")   

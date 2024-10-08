@@ -20,6 +20,9 @@ mid click:
     # close the mouse grid
     user.grid_close()
 
+mouse toggle:key("shift-f8")
+mouse center:key("f12")
+
 #see keys.py for modifiers.
 #defaults
 #command
